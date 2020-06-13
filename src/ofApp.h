@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxGui.h"
 
 class ofApp : public ofBaseApp{
 
@@ -23,6 +24,10 @@ class ofApp : public ofBaseApp{
     
     int WIDTH;
     int HEIGHT;
+    
+    ofxPanel gui;
+    ofxToggle toggle;
+    ofxFloatSlider brightnessSlider;
     
     private:
 };
