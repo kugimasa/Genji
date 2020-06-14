@@ -17,13 +17,22 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofVec3f camera_origin = ofVec3f(0.0, 0.0, 0.0);
+    ofVec3f screen_origin = ofVec3f(2.0, 1.0, -1.0);
+    ofVec3f horizontal = ofVec3f(4.0, 0.0, 0.0);
+    ofVec3f vertical = ofVec3f(0.0, 2.0, 0.0);
+    
     if (toggle) {
         glBegin(GL_POINTS);
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
-                float r = float(x) / float(HEIGHT) * brightnessSlider;
-                float g = float(y) / float(WIDTH) * brightnessSlider;
-                float b = float(x + y) / float(HEIGHT + WIDTH) * brightnessSlider;
+                float u = float(x) / float(WIDTH);
+                float v = float(y) / float(HEIGHT);
+                ray ray(camera_origin, screen_origin + u * horizontal + v * vertical);
+                ofVec3f c = color(ray);
+                float r = c.x;
+                float g = c.y;
+                float b = c.z;
                 glColor3f(r, g, b);
                 glVertex2i(x, y);
             }
@@ -86,4 +95,10 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+ofVec3f ofApp::color(const ray &r){
+    ofVec3f unit = r.direction().normalize();
+    float t = 0.5 * (unit.y + 1.0);
+    return (1.0 - t) * ofVec3f(1.0, 1.0, 1.0) + t * ofVec3f(0.0, 0.0, 1.0);
 }
