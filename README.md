@@ -2,8 +2,8 @@
 A simple Ray Tracer using `openFrameworks`
 
 ## TODO
-- [ ] Output Image by setting values per pixel
-- [ ] Ray Class
+- [x] Output Image by setting values per pixel
+- [x] Ray Class
 - [ ] Intersection with *Sphere* 
 - [ ] Antialiasing
 - [ ] Diffuse Material
