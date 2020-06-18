@@ -23,14 +23,13 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
         
-        ofVec3f color(const ray& r);
+        ofVec3f backGroundColor(float axisY);
         
     int WIDTH;
     int HEIGHT;
     
     ofxPanel gui;
     ofxToggle toggle;
-    ofxFloatSlider brightnessSlider;
     
     private:
 };
